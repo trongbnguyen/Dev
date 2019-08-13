@@ -1,0 +1,32 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+
+import time
+from selenium.webdriver.common.keys import Keys
+driver = webdriver.Chrome(r"C:\Users\27997\PycharmProjects\Selenium\Drivers\chromedriver.exe")
+#driver = webdriver.Ie(r"C:\Users\27997\PycharmProjects\Selenium\Drivers\IEDriverServer.exe")
+
+site = driver.get("https://gensler.service-now.com/sp?id=sc_cat_item&sys_id=4854d7b9dbf37a006ce63caf9d961952")
+
+#Title of Incident
+driver.implicitly_wait(15)
+title = driver.find_element_by_name("short_description")
+title.send_keys("Testing")
+time.sleep(2)
+
+#Description Field
+description = driver.find_element_by_id("sp_formfield_description_ifr")
+description.send_keys(" Loaner mice")
+driver.find_element_by_id("mceu_29").send_keys(Keys.TAB)
+
+
+#Category
+driver.find_element_by_id("s2id_autogen1").send_keys("Hardware")
+driver.find_element_by_xpath('//*[@id="s2id_autogen1_search"]').send_keys(Keys.ENTER)
+
+
+
+time.sleep(2)
+driver.find_element_by_name("submit").click()
+
+
